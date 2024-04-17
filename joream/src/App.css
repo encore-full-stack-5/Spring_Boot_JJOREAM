@@ -55,4 +55,5 @@
   font-weight: 1000 !important;
   color: black;
   background-color: white;
+  z-index: 1000; /* 다른 컨텐츠 위에 오도록 */
 }

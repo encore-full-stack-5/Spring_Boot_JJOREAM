@@ -15,9 +15,19 @@ const ProductList = () => {
   // };
 
   return (
-    <div>
+    <div
+      style={{
+        width: "90vw",
+        paddingTop: "120px",
+        margin: "0 auto",
+        // display: "block", // Flex 컨테이너로 설정
+        // justifyContent: "center", // 수평 중앙 정렬
+      }}
+    >
       <div
         style={{
+          display: "flex", // Flex 컨테이너로 설정
+          justifyContent: "center", // 수평 중앙 정렬
           margin: "0 auto",
           width: "100%",
           height: "150px",
@@ -31,6 +41,8 @@ const ProductList = () => {
           style={{
             padding: "16px 0",
             backgroundColor: "yellowgreen",
+            width: "90%",
+            // maxWidth: "600px",
           }}
         ></div>
       </div>
@@ -180,30 +192,21 @@ const ProductList = () => {
                 backgroundColor: "white",
               }}
             >
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
+              <Card style={{ width: "18rem", padding: "10px" }}>
+                <Card.Img
+                  variant="top"
+                  src="../../public/nike_air_force_1_black.png"
+                  style={{
+                    width: "100px",
+                    height: "180px",
+                    alignSelf: "center",
+                  }}
+                />
                 <Card.Body>
-                  <Card.Title>Card Title</Card.Title>
+                  <Card.Title>Brand</Card.Title>
                   <Card.Text>
-                    Some quick example text to build on the card title and make
-                    up the bulk of the card's content.
+                    Model name ex.Nike Air Force 1 '07 Low Triple Black
                   </Card.Text>
-                  <Button variant="primary">Go somewhere</Button>
-                </Card.Body>
-              </Card>
-
-              <Card style={{ width: "18rem" }}>
-                <Card.Img variant="top" src="holder.js/100px180" />
-                <Card.Body>
-                  <Placeholder as={Card.Title} animation="glow">
-                    <Placeholder xs={6} />
-                  </Placeholder>
-                  <Placeholder as={Card.Text} animation="glow">
-                    <Placeholder xs={7} /> <Placeholder xs={4} />{" "}
-                    <Placeholder xs={4} /> <Placeholder xs={6} />{" "}
-                    <Placeholder xs={8} />
-                  </Placeholder>
-                  <Placeholder.Button variant="primary" xs={6} />
                 </Card.Body>
               </Card>
             </div>
