@@ -6,6 +6,20 @@ import { Link } from "react-router-dom";
 function ColorSchemesExample() {
   return (
     <>
+      <Navbar
+        className="head-navbar"
+        bg="white"
+        data-bs-theme="white"
+        expand="lg"
+      >
+        <Container>
+          <Nav className="top-navbar">
+            <Nav.Link href="#home">로그인</Nav.Link>
+            <Nav.Link href="#features">회원가입</Nav.Link>
+            <Nav.Link href="#pricing">마이페이지</Nav.Link>
+          </Nav>
+        </Container>
+      </Navbar>
       <nav className="head-navbar" bg="white" data-bs-theme="white" expand="lg">
         <div
           className="flex"
