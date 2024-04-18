@@ -20,6 +20,7 @@ function ColorSchemesExample() {
               fontWeight: "bold",
               fontSize: "xx-large",
               color: "black",
+              fontStyle: "italic",
             }}
           >
             KREAM
