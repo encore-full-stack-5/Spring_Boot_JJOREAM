@@ -78,7 +78,6 @@
   color: black;
   background-color: white;
 }
-
 /* Login css파일 */
 .containers {
   text-align: center;
@@ -123,6 +122,7 @@
   background-color: black;
   margin-top: 20px;
 }
+
 .title {
   font-weight: bold;
   font-size: 19px;
@@ -147,6 +147,16 @@
   list-style: none;
   font-size: 14px;
 }
+.list-nav {
+  float: left;
+  width: 100%;
+  margin-top: 30px;
+}
+.nav-item {
+  width: calc(100% / 3);
+  text-align: center;
+  color: black;
+}
 .main {
   display: flex;
   margin-left: auto;
@@ -162,6 +172,7 @@
   overflow: hidden;
   text-align: left;
 }
+
 .content-header {
   align-items: left;
   margin-top: 20px;
@@ -242,4 +253,11 @@
 }
 .desc {
   font-size: 10px;
+}
+
+.list-title {
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  font-size: 24px;
 }
