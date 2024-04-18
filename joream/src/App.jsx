@@ -9,10 +9,8 @@ import Login from "./pages/Login";
 // import { Button, Navbar } from "react-bootstrap";
 
 function App() {
-
   return <ProductList />;
   // return <NavBar />;
-
 }
 
 export default App;
