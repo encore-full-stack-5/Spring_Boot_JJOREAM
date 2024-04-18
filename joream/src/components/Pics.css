@@ -1,0 +1,19 @@
+.pics-container {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  gap: 20px;
+  padding-right: 40px;
+}
+
+.sub-pics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 50vw;
+}
+
+img {
+  display: block;
+  background-color: rgb(213, 232, 239);
+}

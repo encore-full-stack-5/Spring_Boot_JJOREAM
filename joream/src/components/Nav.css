@@ -1,0 +1,17 @@
+.nav-container {
+  display: flex;
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.left-nav {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.right-nav {
+  display: flex;
+  margin-left: auto;
+  gap: 20px;
+  font-size: 1.5rem;
+}
