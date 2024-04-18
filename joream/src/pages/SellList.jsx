@@ -41,7 +41,7 @@ const SellList = () => {
           >
             <Nav.Item>
               <Nav.Link
-                style={{ color: "black" }}
+                style={{ color: "black", fontWeight: "bold" }}
                 onClick={() => setStatus("bidding")}
               >
                 판매 입찰
@@ -50,7 +50,7 @@ const SellList = () => {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link
-                style={{ color: "black" }}
+                style={{ color: "black", fontWeight: "bold" }}
                 onClick={() => setStatus("pending")}
               >
                 진행 중
@@ -59,7 +59,7 @@ const SellList = () => {
             </Nav.Item>
             <Nav.Item>
               <Nav.Link
-                style={{ color: "black" }}
+                style={{ color: "black", fontWeight: "bold" }}
                 onClick={() => setStatus("finished")}
               >
                 {/* eventKey="disabled" disabled */}
