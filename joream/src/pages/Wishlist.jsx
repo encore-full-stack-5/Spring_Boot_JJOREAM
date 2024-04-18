@@ -1,16 +1,24 @@
 // import { login, register } from "../api/auth";
 import "../Wishlist.css";
-const Wishlist = () => {
+const wishlist = () => {
   return (
     <>
-      <div className="navbar">aaa</div>
       <div className="main">
-        <div className="main-right">
+        <div className="main-left">
           aa
           <a>마이페이지</a>
+        </div>
+        <div className="main-right">
+          관심
+          <hr
+            className="line"
+            style={{
+              background-color: "black"
+            }}
+          ></hr>
         </div>
       </div>
     </>
   );
 };
-export default Wishlist;
+export default wishlist;

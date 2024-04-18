@@ -1,8 +1,8 @@
 #root {
-  max-width: 1280px;
+  max-width: 100vw;
   margin: 0 auto;
-  height: 100vh;
   text-align: center;
+  height: 100vh;
 }
 
 .logo {
@@ -39,4 +39,14 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.head-navbar {
+  width: 100vw;
+  max-width: 100%;
+  position: fixed;
+  height: 15vh;
+  font-weight: 1000 !important;
+  color: black;
+  background-color: white;
 }
