@@ -114,3 +114,60 @@
   background-color: black;
   margin-top: 20px;
 }
+
+.title {
+  font-weight: bold;
+  font-size: 19px;
+  color: black;
+}
+.main-left {
+  margin-right: 20px;
+  min-width: 180px;
+  background-color: blueviolet;
+}
+.line {
+  border: 0;
+  height: 1px;
+  background: black;
+}
+.shopping-info {
+  margin-top: 30px;
+}
+.shopping-list {
+  list-style: none;
+  font-size: 14px;
+}
+.list-nav {
+  float: left;
+  width: 100%;
+  margin-top: 30px;
+}
+.nav-item {
+  width: calc(100% / 3);
+  text-align: center;
+  color: black;
+}
+.main {
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  max-width: 1280px;
+  max-height: 480px;
+  text-align: left;
+}
+.main-right {
+  width: 100%;
+  min-height: 380px;
+  overflow: hidden;
+  text-align: left;
+}
+.nav-item {
+  color: black;
+}
+.list-title {
+  color: black;
+  font-weight: bold;
+  text-align: left;
+  font-size: 24px;
+}

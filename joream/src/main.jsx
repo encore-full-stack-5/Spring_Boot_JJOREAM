@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import ProductList from "./pages/ProductList.jsx";
 import Layout from "./pages/Layout.jsx";
+import BuyList from "./pages/BuyList.jsx";
+import SellList from "./pages/SellList.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,8 @@ const router = createBrowserRouter([
       { path: "/Shop", element: <ProductList /> },
       { path: "/Shop", element: <ProductList /> },
       { path: "/Shop", element: <ProductList /> },
+      { path: "/buylist", element: <BuyList /> },
+      { path: "/selllist", element: <SellList /> },
     ],
   },
 ]);
