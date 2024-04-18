@@ -2,13 +2,17 @@
 // import Form from 'react-bootstrap/Form';
 // import InputGroup from 'react-bootstrap/InputGroup';
 
+import "../Login.css";
+
 const Login = () => {
   return (
     <>
       <div className="containers">
         <div className="name">
-          <h1>JOREAM</h1>
-          <h4>JINHO OBEY RULE EVERYTHING AROUND ME</h4>
+          <h1 style={{ fontSize: "30px" }}>JOREAM</h1>
+          <h4 style={{ fontSize: "13px" }}>
+            JINHO OBEY RULE EVERYTHING AROUND ME
+          </h4>
         </div>
         <form>
           <div className="idpass">
