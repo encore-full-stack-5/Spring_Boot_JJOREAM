@@ -17,7 +17,7 @@ const ProductList = () => {
   return (
     <div
       style={{
-        width: "90vw",
+        width: "100vw",
         paddingTop: "120px",
         margin: "0 auto",
         // display: "block", // Flex 컨테이너로 설정
@@ -31,7 +31,7 @@ const ProductList = () => {
           margin: "0 auto",
           width: "100%",
           height: "150px",
-          backgroundColor: "yellow",
+          backgroundColor: "white",
           paddingLeft: "40px",
           paddingRight: "40px",
           overflowX: "hidden",
@@ -39,9 +39,11 @@ const ProductList = () => {
       >
         <div
           style={{
-            padding: "16px 0",
-            backgroundColor: "yellowgreen",
-            width: "90%",
+            margin: "0 65px",
+            padding: "0 40px",
+            backgroundColor: "whitesmoke",
+            width: "100%",
+            borderBottom: "1px solid darkgray",
             // maxWidth: "600px",
           }}
         ></div>
@@ -51,14 +53,16 @@ const ProductList = () => {
       <div
         style={{
           display: "flex",
+          margin: "0 65px",
+          padding: "0 40px",
         }}
       >
         <div
           style={{
-            margin: "0 5px",
+            marginRight: "5px",
             width: "15%",
             height: "80vh",
-            backgroundColor: "wheat",
+            backgroundColor: "whitesmoke",
           }}
         >
           <button
@@ -173,38 +177,51 @@ const ProductList = () => {
         </div>
         <div
           style={{
-            margin: "0 5px",
             width: "85%",
             height: "80vh",
-            backgroundColor: "yellowgreen",
+            backgroundColor: "whitesmoke",
           }}
         >
           <div
-            className="justify-content-around"
             style={{
               display: "flex",
-              backgroundColor: "yellowgreen",
+              backgroundColor: "gray",
             }}
           >
             <div
               style={{
                 margin: "10px",
-                backgroundColor: "white",
               }}
             >
-              <Card style={{ width: "18rem", padding: "10px" }}>
+              <Card
+                style={{
+                  width: "14rem",
+                  padding: "10px",
+                  borderRadius: "20px",
+                }}
+              >
                 <Card.Img
                   variant="top"
                   src="../../public/nike_air_force_1_black.png"
                   style={{
-                    width: "100px",
-                    height: "180px",
+                    width: "200px",
+                    height: "240px",
                     alignSelf: "center",
                   }}
                 />
                 <Card.Body>
-                  <Card.Title>Brand</Card.Title>
-                  <Card.Text>
+                  <Card.Title
+                    style={{
+                      textAlign: "Left",
+                    }}
+                  >
+                    Brand
+                  </Card.Title>
+                  <Card.Text
+                    style={{
+                      textAlign: "Left",
+                    }}
+                  >
                     Model name ex.Nike Air Force 1 '07 Low Triple Black
                   </Card.Text>
                 </Card.Body>
