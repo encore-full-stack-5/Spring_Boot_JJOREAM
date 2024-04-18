@@ -1,3 +1,14 @@
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Russo+One&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -9,6 +20,7 @@
   margin: 0 auto;
   text-align: center;
   height: 100vh;
+  font-family: "Pretendard-Regular";
 }
 
 .logo {
@@ -119,17 +131,18 @@
 }
 .main-left {
   margin-right: 20px;
-  min-width: 180px;
-  background-color: blueviolet;
+  width: 180px;
 }
+
 .line {
   border: 0;
   height: 1px;
   background: black;
 }
 .shopping-info {
-  margin-top: 30px;
+  margin-top: 35px;
 }
+
 .shopping-list {
   list-style: none;
   font-size: 14px;
@@ -159,9 +172,89 @@
   overflow: hidden;
   text-align: left;
 }
-.nav-item {
-  color: black;
+
+.content-header {
+  align-items: left;
+  margin-top: 20px;
 }
+.total-rows {
+  color: rgba(34, 34, 34, 0.8);
+  font-size: 13px;
+  letter-spacing: -0.07px;
+}
+.list {
+  list-style: none;
+}
+.wish-item {
+  align-items: center;
+  border-bottom: 1px solid #ebebeb;
+  display: flex;
+  gap: 8px;
+  padding: 20px 0 19px;
+}
+.wish-product {
+  cursor: pointer;
+  display: flex;
+  width: 100%;
+}
+.product-box {
+  flex: none;
+  height: 80px;
+  width: 80px;
+}
+.product-detail {
+  display: flex;
+  flex-direction: column;
+  margin-left: 13px;
+  overflow: hidden;
+  text-align: left;
+}
+.wish-buy {
+  display: inline-flex;
+  flex-direction: column;
+  flex-shrink: 0;
+  margin-left: 550px;
+  text-align: right;
+}
+.btn-action {
+  align-items: center;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1;
+  position: relative;
+  background-color: rgb(239, 98, 83);
+}
+.btn-title {
+  font-size: 18px;
+  letter-spacing: -0.27px;
+  text-align: center;
+  width: 55px;
+}
+.price {
+  line-height: 15px;
+  margin-left: 10px;
+  text-align: left;
+}
+
+.amount {
+  display: block;
+  font-size: 0;
+}
+.num {
+  display: inline-block;
+  font-weight: 700;
+  vertical-align: top;
+}
+.won {
+  font-size: 14px;
+  letter-spacing: -0.21px;
+}
+.desc {
+  font-size: 10px;
+}
+
 .list-title {
   color: black;
   font-weight: bold;
