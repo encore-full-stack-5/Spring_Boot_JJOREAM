@@ -1,23 +1,15 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import ProductList from "./pages/ProductList";
 import "bootstrap/dist/css/bootstrap.min.css";
-import NavBar from "./components/Navbar";
-import Wishlist from "./pages/wishlist";
-// import { Button, Navbar } from "react-bootstrap";
+import Wishlist from "./pages/Wishlist";
 
 function App() {
   return (
     <>
-      <NavBar />
+      <ProductList />
       <Wishlist />
     </>
   );
 }
 
 export default App;
-
-{
-  /* <Button>Boot strap</Button> */
-}
