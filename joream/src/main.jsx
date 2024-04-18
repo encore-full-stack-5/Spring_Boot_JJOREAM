@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import ProductList from "./pages/ProductList.jsx";
 import Layout from "./pages/Layout.jsx";
+import Signin from "./pages/Signin.jsx";
+import Login from "./pages/Login.jsx";
 
 const router = createBrowserRouter([
   {
@@ -15,6 +17,8 @@ const router = createBrowserRouter([
       { path: "/Shop", element: <ProductList /> },
       { path: "/Shop", element: <ProductList /> },
       { path: "/Shop", element: <ProductList /> },
+      { path: "/Login", element: <Login /> },
+      { path: "/Signin", element: <Signin /> },
     ],
   },
 ]);
