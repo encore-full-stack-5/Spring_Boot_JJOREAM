@@ -45,18 +45,24 @@ function ColorSchemesExample() {
             </Nav>
           </Container>
         </Navbar>
-        <Navbar>
-          <Navbar.Brand
-            href="#home"
-            style={{
-              fontWeight: "bold",
-              fontSize: "xx-large",
-              fontStyle: "italic",
-            }}
-          >
-            JOREAM
-          </Navbar.Brand>
+
+        <Navbar
+          className="head-navbar"
+          bg="white"
+          data-bs-theme="white"
+          expand="lg"
+        >
           <Container>
+            <Navbar.Brand
+              href="#home"
+              style={{
+                fontWeight: "bold",
+                fontSize: "xx-large",
+                fontStyle: "italic",
+              }}
+            >
+              JOREAM
+            </Navbar.Brand>
             <Nav>
               <Nav.Link href="/">HOME</Nav.Link>
               <Nav.Link href="#features">STYLE</Nav.Link>
