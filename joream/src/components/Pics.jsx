@@ -21,11 +21,22 @@ const Pics = () => {
   return (
     <div className="pics-container">
       <div className="main-pics">
-        <img src="../public/shoes.jpg" alt="shoes" width="560" height="560" />
+        <img
+          className="main-img"
+          src="../public/shoes.jpg"
+          alt="shoes"
+          height="560"
+        />
       </div>
       <div className="sub-pics">
         {picsPath.map((path, index) => (
-          <img key={index} src={path} alt="shoes" width="62.8" height="62.8" />
+          <img
+            className="sub-img"
+            key={index}
+            src={path}
+            alt="shoes"
+            height="62.8"
+          />
         ))}
       </div>
     </div>

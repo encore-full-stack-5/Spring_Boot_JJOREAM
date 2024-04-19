@@ -4,16 +4,31 @@
   flex-wrap: wrap;
   gap: 20px;
   padding-right: 40px;
+  width: 50%;
 }
 
 .sub-pics {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
-  max-width: 50vw;
 }
 
-img {
+.main-img {
   display: block;
+  width: 100%;
+}
+
+.sub-img {
+  display: block;
+  width: calc((100% - 120px) / 7);
+  margin-right: 20px;
+  margin-top: 20px;
   background-color: rgb(213, 232, 239);
+}
+
+.sub-img:nth-child(7n) {
+  margin-right: 0;
+}
+
+.sub-img:nth-child(-n + 7) {
+  margin-top: 0;
 }
