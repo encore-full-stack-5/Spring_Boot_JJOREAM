@@ -6,11 +6,13 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { RecoilRoot } from "recoil";
 import ProductList from "./pages/ProductList.jsx";
 import Layout from "./pages/Layout.jsx";
+import ProductDetail from "./pages/ProductDetail.jsx";
 import Wishlist from "./pages/Wishlist.jsx";
 import BuyList from "./pages/BuyList.jsx";
 import SellList from "./pages/SellList.jsx";
 import Signin from "./pages/Signin.jsx";
 import Login from "./pages/Login.jsx";
+import MyPage from "./pages/MyPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -18,13 +20,13 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/Shop", element: <ProductList /> },
-      { path: "/Shop", element: <ProductList /> },
-      { path: "/Shop", element: <ProductList /> },
+      { path: "/detail", element: <ProductDetail /> },
       { path: "/like", element: <Wishlist /> },
       { path: "/buylist", element: <BuyList /> },
       { path: "/selllist", element: <SellList /> },
       { path: "/Login", element: <Login /> },
       { path: "/Signin", element: <Signin /> },
+      { path: "/mypage", element: <MyPage /> },
     ],
   },
 ]);

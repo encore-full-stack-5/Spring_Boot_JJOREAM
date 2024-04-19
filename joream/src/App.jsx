@@ -10,7 +10,6 @@ function App() {
       <Wishlist />
     </>
   );
-
 }
 
 export default App;
