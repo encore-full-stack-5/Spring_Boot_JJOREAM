@@ -1,5 +1,8 @@
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Russo+One&display=swap");
 
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Russo+One&display=swap");
+
+
 @font-face {
   font-family: "Pretendard-Regular";
   src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
@@ -81,12 +84,12 @@
 
 .name h1 {
   margin-bottom: 0px;
-  font-family: "Russo One", sans-serif;
+  font-family: "Fugaz One", sans-serif;
 }
 
 .name h4 {
   margin-top: 0px;
-  font-family: "Russo One", sans-serif;
+  font-family: "Fugaz One", sans-serif;
 }
 
 .idpass {
