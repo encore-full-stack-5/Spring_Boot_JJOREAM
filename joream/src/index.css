@@ -1,6 +1,12 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
-@tailwind utilities;
+@tailwind utilities; */
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -29,7 +35,7 @@ a:hover {
 body {
   margin: 0;
   place-items: center;
-  padding: 0 150px;
+  /* padding: 0 150px; */
   min-width: 320px;
   min-height: 100vh;
 }
@@ -51,8 +57,10 @@ button {
   transition: border-color 0.25s;
 }
 button:hover {
+  cursor: pointer;
   border-color: #888;
 }
+
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
