@@ -33,8 +33,8 @@ function ColorSchemesExample() {
       >
         <Container>
           <Nav className="top-navbar">
-            <Nav.Link href="#home">로그인</Nav.Link>
-            <Nav.Link href="#features">회원가입</Nav.Link>
+            <Nav.Link href="/Login">로그인</Nav.Link>
+            <Nav.Link href="/Signin">회원가입</Nav.Link>
             <Nav.Link href="/mypage">마이페이지</Nav.Link>
             <Nav.Link href="/buylist">구매내역</Nav.Link>
             <Nav.Link href="/selllist">판매내역</Nav.Link>
@@ -68,7 +68,7 @@ function ColorSchemesExample() {
               fontStyle: "italic",
             }}
           >
-            KREAM
+            JOREAM
           </Navbar.Brand>
           <Nav>
             <Nav.Link href="/">HOME</Nav.Link>
