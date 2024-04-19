@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Russo+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
 /* Login css파일 */
 .containers {
   text-align: center;
@@ -8,7 +8,7 @@
 
 .name {
   margin-bottom: 0px;
-  font-family: "Russo One", sans-serif;
+  font-family: "Fugaz One", sans-serif;
 }
 
 .idpass {
