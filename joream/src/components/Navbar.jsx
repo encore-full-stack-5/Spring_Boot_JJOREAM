@@ -38,6 +38,7 @@ function ColorSchemesExample() {
             <Nav.Link href="/mypage">마이페이지</Nav.Link>
             <Nav.Link href="/buylist">구매내역</Nav.Link>
             <Nav.Link href="/selllist">판매내역</Nav.Link>
+            <Nav.Link href="/point">포인트</Nav.Link>
           </Nav>
         </Container>
       </Navbar>

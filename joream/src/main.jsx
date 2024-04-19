@@ -13,6 +13,7 @@ import SellList from "./pages/SellList.jsx";
 import Signin from "./pages/Signin.jsx";
 import Login from "./pages/Login.jsx";
 import MyPage from "./pages/MyPage.jsx";
+import Point from "./pages/Point.jsx";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,7 @@ const router = createBrowserRouter([
       { path: "/Login", element: <Login /> },
       { path: "/Signin", element: <Signin /> },
       { path: "/mypage", element: <MyPage /> },
+      { path: "/point", element: <Point /> },
     ],
   },
 ]);
