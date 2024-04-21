@@ -5,6 +5,8 @@
   gap: 20px;
   padding-right: 40px;
   width: 50%;
+  float: left;
+  /* position: static; */
 }
 
 .sub-pics {
