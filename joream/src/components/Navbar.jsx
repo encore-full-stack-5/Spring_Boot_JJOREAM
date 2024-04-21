@@ -4,140 +4,97 @@ import Navbar from "react-bootstrap/Navbar";
 import { Link } from "react-router-dom";
 import { Modal, Button } from "react-bootstrap";
 import React, { useState } from "react";
+import Search from "../pages/Search";
 
 function ColorSchemesExample() {
-  // 모달 보여짐 상태를 제어하는 state
   const [showModal, setShowModal] = useState(false);
+  // input 태그의 값(value)을 관리하는 state
+  const [inputValue, setInputValue] = useState("");
 
   // 모달을 열고 닫는 함수
-  const handleClose = () => {
-    setShowModal(false);
+
+  const onClickModal = () => {
+    setShowModal(!showModal);
   };
-  const handleShow = () => setShowModal(true);
 
   return (
-    <div
-      style={{
-        borderBottom: "1px solid darkgray",
-        margin: "0 auto",
-      }}
-    >
-      <Navbar
-        className="head-navbar"
-        bg="white"
-        data-bs-theme="white"
-        expand="lg"
+    <>
+      <div
         style={{
-          marginRight: "20px",
+          borderBottom: "1px solid darkgray",
+          margin: "0 auto",
         }}
       >
-        <Container>
-          <Nav className="top-navbar">
-            <Nav.Link href="#home">로그인</Nav.Link>
-            <Nav.Link href="#features">회원가입</Nav.Link>
-            <Nav.Link href="/mypage">마이페이지</Nav.Link>
-            <Nav.Link href="/buylist">구매내역</Nav.Link>
-            <Nav.Link href="/selllist">판매내역</Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-      <Navbar
-        className="head-navbar"
-        bg="white"
-        data-bs-theme="white"
-        expand="lg"
-      >
-        <Container>
-          {/* <nav className="head-navbar" bg="white" data-bs-theme="white" expand="lg">
-        <div
-          className="flex"
+        <Navbar
+          className="head-navbar"
+          bg="white"
+          data-bs-theme="white"
+          expand="lg"
           style={{
-            margin: "0 50px",
-            justifyContent: "space-between",
+            marginRight: "20px",
           }}
         >
-          <Link
-            to="/" */}
+          <Container>
+            <Nav className="top-navbar">
+              <Nav.Link href="/Login">로그인</Nav.Link>
+              <Nav.Link href="/Signin">회원가입</Nav.Link>
+              <Nav.Link href="/mypage">마이페이지</Nav.Link>
+              <Nav.Link href="/buylist">구매내역</Nav.Link>
+              <Nav.Link href="/selllist">판매내역</Nav.Link>
+              <Nav.Link href="/point">포인트</Nav.Link>
+            </Nav>
+          </Container>
+        </Navbar>
 
-          <Navbar.Brand
-            href="#home"
-            style={{
-              fontWeight: "bold",
-              fontSize: "xx-large",
-              fontStyle: "italic",
-            }}
-          >
-            KREAM
-          </Navbar.Brand>
-          <Nav>
-            <Nav.Link href="/">HOME</Nav.Link>
-            <Nav.Link href="#features">STYLE</Nav.Link>
-            <Nav.Link href="/Shop">SHOP</Nav.Link>
-            <Nav.Link
-              href="/Shop"
+        <Navbar
+          className="head-navbar"
+          bg="white"
+          data-bs-theme="white"
+          expand="lg"
+        >
+          <Container>
+            <Navbar.Brand
+              href="#home"
               style={{
-                alignSelf: "center",
-              }}
-              onClick={(e) => {
-                e.preventDefault(); // 기본 동작 방지
-                e.stopPropagation(); // 이벤트 버블링 중단
-                handleShow(); // 모달 열기
+                fontWeight: "bold",
+                fontSize: "xx-large",
+                fontStyle: "italic",
               }}
             >
-              <img
-                src="../../public/magnifying.png"
+              JOREAM
+            </Navbar.Brand>
+            <Nav>
+              <Nav.Link href="/">HOME</Nav.Link>
+              <Nav.Link href="#features">STYLE</Nav.Link>
+              <Nav.Link href="/Shop">SHOP</Nav.Link>
+              <Nav.Link
+                href="/Shop"
                 style={{
-                  width: "25px",
-                  height: "25px",
+                  alignSelf: "center",
                 }}
-                alt="Search"
-              />
-            </Nav.Link>
-          </Nav>
-        </Container>
-      </Navbar>
-
-      {/* 모달 컴포넌트 */}
-      <Modal show={showModal} onHide={handleClose} fullscreen={true}>
-        <Modal.Header
-          closeButton
-          style={{
-            marginTop: "5px",
-            height: "3%",
-          }}
-        ></Modal.Header>
-        <Modal.Body>
-          {/* 모달 내용 */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "start",
-              height: "100%",
-            }}
-          >
-            <input
-              type="text"
-              placeholder="ㅎㅇ"
-              style={{
-                fontSize: "1.5rem", // 글자 크기 조정
-                border: "none", // 모든 테두리 제거
-                borderBottom: "3px solid black", // 아래쪽 테두리만 추가
-                padding: "10px", // 패딩으로 입력 창 내부 여백 조정
-                outline: "none", // 선택 시 테두리 없앰
-                width: "50%", // 입력 창 너비
-              }}
-            />
-          </div>
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            닫기
-          </Button>
-        </Modal.Footer>
-      </Modal>
-    </div>
+                onClick={(e) => {
+                  e.preventDefault();
+                  // onClickModal();
+                  setShowModal(true);
+                }}
+              >
+                <img
+                  src="../../public/magnifying.png"
+                  style={{
+                    width: "25px",
+                    height: "25px",
+                  }}
+                  alt="Search"
+                />
+              </Nav.Link>
+            </Nav>
+          </Container>
+        </Navbar>
+      </div>
+      {showModal && (
+        <Search showModal={showModal} setShowModal={setShowModal} />
+      )}
+    </>
   );
 }
 
