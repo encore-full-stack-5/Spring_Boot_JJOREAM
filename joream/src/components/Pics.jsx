@@ -35,7 +35,7 @@ const Pics = () => {
             key={index}
             src={path}
             alt="shoes"
-            height="62.8"
+            height="76.5"
           />
         ))}
       </div>
