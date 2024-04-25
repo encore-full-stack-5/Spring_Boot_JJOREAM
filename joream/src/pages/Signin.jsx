@@ -2,6 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { signup } from "../api/register";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../Signin.css";
 
 const Signup = () => {
@@ -9,6 +10,7 @@ const Signup = () => {
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const navigate = useNavigate();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -23,7 +25,7 @@ const Signup = () => {
     } catch (error) {
       console.error("Error:", error);
     }
-    window.location.href = "http://localhost:5173";
+    navigate("/login");
   };
 
   return (
