@@ -1,29 +1,73 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
-
+import axios from "axios";
+import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 
 import "../Signin.css";
 
 const Signin = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+
+  const submit = async (event) => {
+    event.preventDefault();
+
+    const formData = {
+      email: email,
+      password: password,
+      username: name,
+      address: email,
+    };
+
+    const res = await axios.post(
+      "http://localhost:8080/api/v1/auths/signup",
+      formData
+    );
+    window.location.href = "http://localhost:5173";
+  };
   return (
     <>
       <div className="containers">
         <div className="name">
           <h2>회원가입</h2>
         </div>
-        <form>
+        <form onSubmit={submit}>
           <div className="idpass">
             <h3>이메일 주소*</h3>
             <div>
-              <input type="email" placeholder="예) joream@joream.co.kr" />
+              <input
+                type="email"
+                placeholder="예) joream@joream.co.kr"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <h3>비밀번호*</h3>
             <div>
               <input
                 type="password"
                 placeholder="영문, 숫자, 특수문자 조합 8-16자"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <h3>이름*</h3>
+            <div>
+              <input
+                type="text"
+                placeholder="이름을 입력하세요"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+              />
+            </div>
+            <h3>주소*</h3>
+            <div>
+              <input
+                type="text"
+                placeholder="주소를 입력하세요"
+                value={address}
+                onChange={(e) => setAddress(e.target.value)}
               />
             </div>
             <h3>추천인 코드</h3>
@@ -55,7 +99,11 @@ const Signin = () => {
               <option value="17">300</option>
             </Form.Select>
             <div>
-              <input type="submit" value="가입하기"></input>
+              <input
+                type="submit"
+                value="가입하기"
+                onClick={(e) => submit(e)}
+              ></input>
             </div>
           </div>
         </form>
