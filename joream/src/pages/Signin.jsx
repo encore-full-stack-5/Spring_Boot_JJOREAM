@@ -16,15 +16,16 @@ const Signup = () => {
       email: email,
       password: password,
       username: name,
-      address: email,
+      address: address,
     };
     try {
-      const { data } = await signup(formData);
+      const data = await signup(formData);
     } catch (error) {
       console.error("Error:", error);
     }
     window.location.href = "http://localhost:5173";
   };
+
   return (
     <>
       <div className="containers">
