@@ -4,7 +4,10 @@
   width: 50%;
 }
 
-button {
+.size-button,
+.purchase-button,
+.sale-button,
+.wish-button {
   width: 100%;
   padding: 0;
 }
@@ -15,7 +18,7 @@ button {
 }
 
 .info {
-  border-right: 1px solid rgb(199, 197, 197);
+  border-right: 1px solid rgb(229, 228, 228);
   width: 100%;
   padding-left: 10px;
 }
@@ -62,6 +65,9 @@ button {
 
 .size-button {
   margin-bottom: 45px;
+  text-align: left;
+  padding-left: 20px;
+  font-weight: 800;
 }
 
 .current-price {

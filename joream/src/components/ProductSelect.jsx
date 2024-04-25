@@ -1,6 +1,79 @@
+import { useRecoilState } from "recoil";
 import "./ProductSelect.css";
+import {
+  isPurchaseState,
+  isSaleState,
+  isTransactionState,
+  productInfoState,
+  purchaseHistoryState,
+  saleHistoryState,
+  transactionHistoryState,
+} from "../store/ProductDetail";
+import { Modal } from "react-bootstrap";
+import { useState } from "react";
 
 const ProductSelect = () => {
+  const [productInfo, setProductInfo] = useRecoilState(productInfoState);
+  const [transactionHistory, setTransactionHistory] = useRecoilState(
+    transactionHistoryState
+  );
+  const [saleHistory, setSaleHistory] = useRecoilState(saleHistoryState);
+  const [purchaseHistory, setPurchaseHistory] =
+    useRecoilState(purchaseHistoryState);
+  const [isTransaction, setIsTransaction] = useRecoilState(isTransactionState);
+  const [isSale, setIsSale] = useRecoilState(isSaleState);
+  const [isPurchase, setIsPurchase] = useRecoilState(isPurchaseState);
+  const [showSizeModal, setShowSizeModal] = useState(false);
+  const [showPurchaseModal, setShowPurchaseModal] = useState(false);
+  const [showSaleModal, setShowSaleModal] = useState(false);
+  const [showWishModal, setShowWishModal] = useState(false);
+
+  const [selectedSize, setSelectedSize] = useState("모든 사이즈");
+  const { productSize, productPrice } = {
+    productSize: [
+      "모든 사이즈",
+      225,
+      230,
+      235,
+      235,
+      240,
+      240,
+      245,
+      250,
+      255,
+      260,
+      265,
+      270,
+      275,
+      280,
+      285,
+      290,
+      295,
+      300,
+    ],
+    productPrice: [
+      "구매입찰",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+      "320,000",
+    ],
+  };
+
   const {
     currentPrice,
     productNameEn,
@@ -11,50 +84,98 @@ const ProductSelect = () => {
     modelCode,
     releaseDate,
     color,
-  } = {
-    currentPrice: "252,000원",
-    productNameEn: "Nike SB Dunk Low Pro Chicago",
-    productNameKr: "나이키 SB 덩크 로우 프로 시카고",
-    size: 230,
-    recentDeal: "301,000원",
-    releasePrice: "$190 (약 263,100원)",
-    modelCode: "BQ6817-600",
-    releaseDate: "22/02/06",
-    color: "Varsity Red/White-Varsity Red-Black",
+  } = productInfo;
+
+  const getTransactionHistory = (e) => {
+    e.preventDefault();
+    setIsTransaction(true);
+    setIsSale(false);
+    setIsPurchase(false);
   };
+
+  const getSaleHistory = (e) => {
+    e.preventDefault();
+    setIsTransaction(false);
+    setIsSale(true);
+    setIsPurchase(false);
+  };
+
+  const getPurchaseHistory = (e) => {
+    e.preventDefault();
+    setIsTransaction(false);
+    setIsSale(false);
+    setIsPurchase(true);
+  };
+
+  const openSizeModal = () => {
+    setShowSizeModal(true);
+  };
+
+  const closeSizeModal = () => {
+    setShowSizeModal(false);
+  };
+
+  const openPurchaseModal = () => {
+    setShowPurchaseModal(true);
+  };
+
+  const closePurchaseModal = () => {
+    setShowPurchaseModal(false);
+  };
+
+  const openSaleModal = () => {
+    setShowSaleModal(true);
+  };
+
+  const closeSaleModal = () => {
+    setShowSaleModal(false);
+  };
+
+  const openWishModal = () => {
+    setShowWishModal(true);
+  };
+
+  const closeWishModal = () => {
+    setShowWishModal(false);
+  };
+
   return (
     <div className="detail">
       <div className="current-price-title">즉시 구매가</div>
       <div className="current-price">{currentPrice}</div>
       <div className="product-name-en">{productNameEn}</div>
       <div className="product-name-kr">{productNameKr}</div>
-      <button className="size-button" type="button">
-        모든 사이즈
+      <button className="size-button" type="button" onClick={openSizeModal}>
+        {selectedSize}
       </button>
       <div className="info-container">
         <div className="info">
-          <div>최근 거래가</div>
+          <div style={{ color: "grey" }}>최근 거래가</div>
           <div>{recentDeal}</div>
         </div>
         <div className="info">
-          <div>발매가</div>
+          <div style={{ color: "grey" }}>발매가</div>
           <div>{releasePrice}</div>
         </div>
         <div className="info">
-          <div>모델 번호</div>
+          <div style={{ color: "grey" }}>모델 번호</div>
           <div>{modelCode}</div>
         </div>
         <div className="info">
-          <div>출시일</div>
+          <div style={{ color: "grey" }}>출시일</div>
           <div>{releaseDate}</div>
         </div>
         <div className="info">
-          <div>대표 색상</div>
+          <div style={{ color: "grey" }}> 대표 색상</div>
           <div>{color}</div>
         </div>
       </div>
       <div className="transaction-button">
-        <button className="purchase-button" type="button">
+        <button
+          className="purchase-button"
+          type="button"
+          onClick={openPurchaseModal}
+        >
           <div className="purchase-container">
             <div className="purchase-button-left">구매</div>
             <div className="purchase-button-right">
@@ -63,7 +184,7 @@ const ProductSelect = () => {
             </div>
           </div>
         </button>
-        <button className="sale-button" type="button">
+        <button className="sale-button" type="button" onClick={openSaleModal}>
           <div className="sale-container">
             <div className="sale-button-left">판매</div>
             <div className="sale-button-right">
@@ -73,7 +194,7 @@ const ProductSelect = () => {
           </div>
         </button>
       </div>
-      <button className="wish-button" type="button">
+      <button className="wish-button" type="button" onClick={openWishModal}>
         관심상품 1.4만
       </button>
       <div className="benefit">
@@ -100,7 +221,7 @@ const ProductSelect = () => {
             width="50"
             height="50"
           />
-          <div class="shipping-info" className="shipping-info">
+          <div className="shipping-info">
             <div>빠른배송 5,000원</div>
             <div>지금 결제시 내일 4/19(금) 도착 예정</div>
           </div>
@@ -132,6 +253,326 @@ const ProductSelect = () => {
           </div>
         </div>
       </div>
+      <button
+        type="button"
+        onClick={getTransactionHistory}
+        style={{
+          display: "inline-block",
+          width: "calc(100%/3)",
+          backgroundColor: "rgb(246, 246, 246)",
+          border: "1px solid rgb(229, 228, 228)",
+          height: "30px",
+          verticalAlign: "center",
+          lineHeight: "1",
+          fontSize: "0.9rem",
+        }}
+      >
+        체결 거래
+      </button>
+      <button
+        type="button"
+        onClick={getSaleHistory}
+        style={{
+          display: "inline-block",
+          width: "calc(100%/3)",
+          backgroundColor: "rgb(246, 246, 246)",
+          border: "1px solid rgb(229, 228, 228)",
+          height: "30px",
+          verticalAlign: "center",
+          lineHeight: "1",
+          fontSize: "0.9rem",
+        }}
+      >
+        판매 입찰
+      </button>
+      <button
+        type="button"
+        onClick={getPurchaseHistory}
+        style={{
+          display: "inline-block",
+          width: "calc(100%/3)",
+          backgroundColor: "rgb(246, 246, 246)",
+          border: "1px solid rgb(229, 228, 228)",
+          height: "30px",
+          verticalAlign: "center",
+          lineHeight: "1",
+          fontSize: "0.9rem",
+        }}
+      >
+        구매 입찰
+      </button>
+      <table style={{ width: "100%", marginTop: "30px", fontSize: "0.9rem" }}>
+        {isTransaction ? (
+          <>
+            <thead
+              style={{
+                height: "30px",
+                borderBottom: "1px solid rgb(199, 197, 197)",
+              }}
+            >
+              <th style={{ width: "70%" }}>옵션</th>
+              <th style={{ width: "15%", textAlign: "right" }}>거래가</th>
+              <th style={{ width: "15%", textAlign: "right" }}>거래일</th>
+            </thead>
+            <tbody>
+              {transactionHistory.map((el, i) => (
+                <tr key={i} style={{ height: "30px" }}>
+                  <td>{el.option}</td>
+                  <td style={{ textAlign: "right" }}>{el.price}</td>
+                  <td style={{ textAlign: "right" }}>{el.date}</td>
+                </tr>
+              ))}
+            </tbody>
+          </>
+        ) : isSale ? (
+          <>
+            <thead
+              style={{
+                height: "30px",
+                borderBottom: "1px solid rgb(199, 197, 197)",
+              }}
+            >
+              <th style={{ width: "70%" }}>옵션</th>
+              <th style={{ width: "15%", textAlign: "right" }}>판매 희망가</th>
+              <th style={{ width: "15%", textAlign: "right" }}>수량</th>
+            </thead>
+            <tbody>
+              {saleHistory.map((el, i) => (
+                <tr key={i} style={{ height: "30px" }}>
+                  <td>{el.option}</td>
+                  <td style={{ textAlign: "right" }}>{el.price}</td>
+                  <td style={{ textAlign: "right" }}>{el.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </>
+        ) : (
+          <>
+            <thead
+              style={{
+                height: "30px",
+                borderBottom: "1px solid rgb(199, 197, 197)",
+              }}
+            >
+              <th style={{ width: "70%" }}>옵션</th>
+              <th style={{ width: "15%", textAlign: "right" }}>구매 희망가</th>
+              <th style={{ width: "15%", textAlign: "right" }}>수량</th>
+            </thead>
+            <tbody>
+              {purchaseHistory.map((el, i) => (
+                <tr key={i} style={{ height: "30px" }}>
+                  <td>{el.option}</td>
+                  <td style={{ textAlign: "right" }}>{el.price}</td>
+                  <td style={{ textAlign: "right" }}>{el.amount}</td>
+                </tr>
+              ))}
+            </tbody>
+          </>
+        )}
+      </table>
+      <Modal
+        show={showSizeModal}
+        onHide={closeSizeModal}
+        scrollable
+        style={{
+          width: "480px",
+          height: "580px",
+          top: "20%",
+          left: "35%",
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "800",
+              textAlign: "right",
+            }}
+          >
+            사이즈
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {productSize.map((el, i) => (
+            <button
+              key={i}
+              style={{
+                width: "130px",
+                marginRight: "7px",
+                marginBottom: "10px",
+                height: "60px",
+              }}
+            >
+              <div>{el}</div>
+              <div style={{ fontSize: "0.8rem", color: "rgb(218, 83, 71)" }}>
+                {productPrice[i]}
+              </div>
+            </button>
+          ))}
+        </Modal.Body>
+      </Modal>
+
+      <Modal
+        show={showPurchaseModal}
+        onHide={closePurchaseModal}
+        scrollable
+        style={{
+          width: "480px",
+          height: "580px",
+          top: "20%",
+          left: "35%",
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "800",
+              textAlign: "right",
+            }}
+          >
+            구매하기
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                width: "100%",
+                marginTop: "10px",
+              }}
+            >
+              <img
+                src="../../public/shoes.jpg"
+                alt="shoes"
+                width="60"
+                height="60"
+                style={{ display: "block" }}
+              />
+              <div style={{ fontSize: "0.8rem", textAlign: "left" }}>
+                <div>{modelCode}</div>
+                <div>{productNameEn}</div>
+                <div>{productNameKr}</div>
+              </div>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {productSize.map((el, i) => (
+            <button
+              key={i}
+              style={{
+                width: "130px",
+                marginRight: "7px",
+                marginBottom: "10px",
+                height: "60px",
+              }}
+            >
+              <div>{el}</div>
+              <div style={{ fontSize: "0.8rem", color: "rgb(218, 83, 71)" }}>
+                {productPrice[i]}
+              </div>
+            </button>
+          ))}
+        </Modal.Body>
+      </Modal>
+      <Modal
+        show={showSaleModal}
+        onHide={closeSaleModal}
+        scrollable
+        style={{
+          width: "480px",
+          height: "580px",
+          top: "20%",
+          left: "35%",
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title
+            style={{
+              fontSize: "1.2rem",
+              fontWeight: "800",
+              textAlign: "right",
+            }}
+          >
+            판매하기
+            <div
+              style={{
+                display: "flex",
+                gap: "10px",
+                width: "100%",
+                marginTop: "10px",
+              }}
+            >
+              <img
+                src="../../public/shoes.jpg"
+                alt="shoes"
+                width="60"
+                height="60"
+                style={{ display: "block" }}
+              />
+              <div style={{ fontSize: "0.8rem", textAlign: "left" }}>
+                <div>{modelCode}</div>
+                <div>{productNameEn}</div>
+                <div>{productNameKr}</div>
+              </div>
+            </div>
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {productSize.map((el, i) => (
+            <button
+              key={i}
+              style={{
+                width: "130px",
+                marginRight: "7px",
+                marginBottom: "10px",
+                height: "60px",
+              }}
+            >
+              <div>{el}</div>
+              <div
+                style={{
+                  fontSize: "0.8rem",
+                  color: "rgb(77, 214, 118)",
+                }}
+              >
+                {productPrice[i]}
+              </div>
+            </button>
+          ))}
+        </Modal.Body>
+      </Modal>
+      <Modal
+        show={showWishModal}
+        onHide={closeWishModal}
+        scrollable
+        style={{
+          width: "480px",
+          height: "580px",
+          top: "20%",
+          left: "35%",
+        }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title style={{ fontWeight: "800", textAlign: "center" }}>
+            관심 상품
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {productSize.map((el, i) => (
+            <button
+              key={i}
+              style={{
+                width: "130px",
+                marginRight: "7px",
+                marginBottom: "10px",
+                height: "60px",
+              }}
+            >
+              <div>{el}</div>
+            </button>
+          ))}
+        </Modal.Body>
+      </Modal>
     </div>
   );
 };
