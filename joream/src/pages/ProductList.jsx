@@ -7,27 +7,35 @@ import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
 import { useEffect, useState } from "react";
 import Search from "./Search";
-import { getAllProducts } from "../api/productList";
+import { categoryProducts, getAllProducts } from "../api/productList";
 import { useRecoilState } from "recoil";
 import { ProductListState } from "../store/product";
 
 const ProductList = () => {
   const [showModal, setShowModal] = useState(false);
   const [category, setCategory] = useState(false);
-  const [brand, setBrand] = useState(false);
-  const [coordinate, setCoordinate] = useState("0px");
-  const [data, setData] = useRecoilState(ProductListState);
+  const [brand, setBrand] = useState("");
+  let [data, setData] = useRecoilState(ProductListState);
   const [isLoading, setIsLoading] = useState(true);
+
+  const [selectedCategories, setSelectedCategories] = useState([]);
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      const { data } = await getAllProducts();
-      console.log(data);
+      let data = [];
+      if (selectedCategories.length > 0) {
+        for (const category of selectedCategories) {
+          const response = await categoryProducts(category);
+          data = data.concat(response.data);
+        }
+      } else {
+        const response = await getAllProducts();
+        data = response.data;
+      }
       const moreInfo = data.map((el) => ({
         ...el,
       }));
-      console.log(moreInfo);
       setData(moreInfo);
     } catch (error) {
       console.error("Error:", error);
@@ -36,14 +44,26 @@ const ProductList = () => {
     }
   };
 
+  const handleCheckboxChange = (event) => {
+    const { value, checked } = event.target;
+
+    if (checked) {
+      setSelectedCategories([...selectedCategories, value]);
+    } else {
+      setSelectedCategories(
+        selectedCategories.filter((category) => category !== value)
+      );
+    }
+  };
+
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [selectedCategories]);
 
-  const onClickModal = () => {
-    setShowModal(!showModal);
-    // setPrdInfo(el); el
-  };
+  // const onClickModal = () => {
+  //   setShowModal(!showModal);
+  //   // setPrdInfo(el); el
+  // };
 
   return (
     <>
@@ -80,13 +100,13 @@ const ProductList = () => {
             <div
               style={{
                 display: "flex",
+                justifyContent: "center",
               }}
             >
               <div
                 id="ddd"
                 style={{
                   display: "flex",
-                  transform: `translate(${coordinate})`,
                   transition: "transform 0.5s ease-in-out", // 모션 효과 추가
                   textAlign: "center",
                 }}
@@ -97,26 +117,9 @@ const ProductList = () => {
                     width: "100px",
                     margin: "5px 15px",
                   }}
-                  onClick={
-                    () => setShowModal(true)
-                    // onClickModal();
-                  }
-                >
-                  <img
-                    src="../../public/nike_air_force_1_black.png"
-                    style={{
-                      width: "100%",
-                      height: "100px",
-                      alignSelf: "center",
-                    }}
-                  />
-                  <p>옵션1</p>
-                </div>
-                <div
-                  style={{
-                    display: "inline-block",
-                    width: "100px",
-                    margin: "5px 15px",
+                  onClick={() => {
+                    setShowModal(true);
+                    setBrand("에어포스");
                   }}
                 >
                   <img
@@ -127,7 +130,7 @@ const ProductList = () => {
                       alignSelf: "center",
                     }}
                   />
-                  <p>옵션2</p>
+                  <p>에어포스</p>
                 </div>
 
                 <div
@@ -136,23 +139,9 @@ const ProductList = () => {
                     width: "100px",
                     margin: "5px 15px",
                   }}
-                >
-                  <img
-                    src="../../public/nike_air_force_1_black.png"
-                    style={{
-                      width: "100%",
-                      height: "100px",
-                      alignSelf: "center",
-                    }}
-                  />
-                  <p>옵션3</p>
-                </div>
-
-                <div
-                  style={{
-                    display: "inline-block",
-                    width: "100px",
-                    margin: "5px 15px",
+                  onClick={() => {
+                    setShowModal(true);
+                    setBrand("나이키");
                   }}
                 >
                   <img
@@ -163,7 +152,7 @@ const ProductList = () => {
                       alignSelf: "center",
                     }}
                   />
-                  <p>옵션4</p>
+                  <p>나이키</p>
                 </div>
 
                 <div
@@ -171,6 +160,10 @@ const ProductList = () => {
                     display: "inline-block",
                     width: "100px",
                     margin: "5px 15px",
+                  }}
+                  onClick={() => {
+                    setShowModal(true);
+                    setBrand("아디다스");
                   }}
                 >
                   <img
@@ -181,7 +174,7 @@ const ProductList = () => {
                       alignSelf: "center",
                     }}
                   />
-                  <p>옵션5</p>
+                  <p>아디다스</p>
                 </div>
 
                 <div
@@ -189,6 +182,10 @@ const ProductList = () => {
                     display: "inline-block",
                     width: "100px",
                     margin: "5px 15px",
+                  }}
+                  onClick={() => {
+                    setShowModal(true);
+                    setBrand("스투시");
                   }}
                 >
                   <img
@@ -199,19 +196,9 @@ const ProductList = () => {
                       alignSelf: "center",
                     }}
                   />
-                  <p>옵션6</p>
+                  <p>스투시</p>
                 </div>
               </div>
-            </div>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-              }}
-            >
-              <button onClick={() => setCoordinate("0px")}>1</button>
-              <button onClick={() => setCoordinate("-1172px")}>2</button>
-              {/* <button onClick={() => setCoordinate("-1040px")}>3</button> */}
             </div>
           </div>
         </div>
@@ -228,7 +215,7 @@ const ProductList = () => {
             style={{
               marginRight: "5px",
               width: "15%",
-              height: "80vh",
+              height: "100%",
             }}
           >
             <div className="border-b border-gray-200">
@@ -283,13 +270,14 @@ const ProductList = () => {
                     <div className="flex items-center my-1">
                       <input
                         id="shoes"
-                        name="color[]"
-                        value="white"
+                        name="category"
+                        value="신발"
                         type="checkbox"
                         className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
+                        onChange={handleCheckboxChange}
                       />
                       <label
-                        htmlFor="filter-mobile-color-0"
+                        htmlFor="shoes"
                         style={{
                           marginLeft: "5px",
                         }}
@@ -300,13 +288,14 @@ const ProductList = () => {
                     <div className="flex items-center my-1">
                       <input
                         id="clothes"
-                        name="color[]"
-                        value="beige"
+                        name="category"
+                        value="의류"
                         type="checkbox"
                         className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
+                        onChange={handleCheckboxChange}
                       />
                       <label
-                        htmlFor="filter-mobile-color-1"
+                        htmlFor="clothes"
                         style={{
                           marginLeft: "5px",
                         }}
@@ -317,13 +306,14 @@ const ProductList = () => {
                     <div className="flex items-center my-1">
                       <input
                         id="goods"
-                        name="color[]"
-                        value="blue"
+                        name="category"
+                        value="잡화"
                         type="checkbox"
                         className="h-4 w-4 rounded border-gray-300 text-gray-600 focus:ring-gray-500"
+                        onChange={handleCheckboxChange}
                       />
                       <label
-                        htmlFor="filter-mobile-color-2"
+                        htmlFor="goods"
                         style={{
                           marginLeft: "5px",
                         }}
@@ -344,11 +334,11 @@ const ProductList = () => {
               display: "flex",
               flexWrap: "wrap",
               width: "85%",
-              height: "80vh",
+              height: "100%",
+              justifyContent: "center",
               backgroundColor: "whitesmoke",
             }}
           >
-            {/* 여기서 맵 */}
             {isLoading ? (
               <p>loading...</p>
             ) : (
@@ -382,59 +372,22 @@ const ProductList = () => {
                           textAlign: "Left",
                         }}
                       >
-                        asd
+                        <p>{el.brandName}</p>
                       </Card.Title>
                       <Card.Text
                         style={{
                           textAlign: "Left",
                         }}
                       >
-                        Model name ex.Nike Air Force 1 '07 Low Triple Black
+                        {el.productName}
+                        <br />
+                        {el.releasePrice}
                       </Card.Text>
                     </Card.Body>
                   </Card>
                 </div>
               ))
             )}
-            {/* <div
-              style={{
-                margin: "10px",
-              }}
-            >
-              <Card
-                style={{
-                  width: "14rem",
-                  padding: "10px",
-                  borderRadius: "20px",
-                }}
-              >
-                <Card.Img
-                  variant="top"
-                  src="../../public/nike_air_force_1_black.png"
-                  style={{
-                    width: "200px",
-                    height: "240px",
-                    alignSelf: "center",
-                  }}
-                />
-                <Card.Body>
-                  <Card.Title
-                    style={{
-                      textAlign: "Left",
-                    }}
-                  >
-                    Brand
-                  </Card.Title>
-                  <Card.Text
-                    style={{
-                      textAlign: "Left",
-                    }}
-                  >
-                    Model name ex.Nike Air Force 1 '07 Low Triple Black
-                  </Card.Text>
-                </Card.Body>
-              </Card>
-            </div> */}
           </div>
         </div>
       </div>
@@ -442,7 +395,7 @@ const ProductList = () => {
         <Search
           showModal={showModal}
           setShowModal={setShowModal}
-          // prdInfo={prdInfo}
+          searchWord={brand}
         />
       )}
     </>
