@@ -1,10 +1,29 @@
-// import 'bootstrap/dist/css/bootstrap.min.css';
-// import Form from 'react-bootstrap/Form';
-// import InputGroup from 'react-bootstrap/InputGroup';
-
+import axios from "axios";
+import React, { useState } from "react";
+import { login } from "../api/register";
 import "../Login.css";
 
 const Login = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const submit = async (event) => {
+    event.preventDefault();
+    const formData = {
+      email: email,
+      password: password,
+    };
+
+    try {
+      const { data } = await login(formData);
+      console.log(data);
+      localStorage.setItem("token", data);
+    } catch (error) {
+      console.log("Error:", error);
+    }
+    // window.location.href = "http://localhost:5173";
+  };
+
   return (
     <>
       <div className="containers">
@@ -14,18 +33,31 @@ const Login = () => {
             JINHO OBEY RULE EVERYTHING AROUND ME
           </h4>
         </div>
-        <form>
+        <form onSubmit={submit}>
           <div className="idpass">
             <h3>이메일 주소</h3>
             <div>
-              <input type="email" placeholder="예) joream@joream.co.kr" />
+              <input
+                type="email"
+                placeholder="예) joream@joream.co.kr"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
             </div>
             <h3>비밀번호</h3>
             <div>
-              <input type="password" />
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
             <div>
-              <input type="submit" value="로그인"></input>
+              <input
+                type="submit"
+                value="로그인"
+                onClick={(e) => submit(e)}
+              ></input>
             </div>
           </div>
         </form>
