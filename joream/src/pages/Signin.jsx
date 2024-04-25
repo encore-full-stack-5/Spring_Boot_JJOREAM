@@ -1,10 +1,10 @@
 import axios from "axios";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
-
+import { signup } from "../api/register";
 import "../Signin.css";
 
-const Signin = () => {
+const Signup = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
@@ -12,18 +12,17 @@ const Signin = () => {
 
   const submit = async (event) => {
     event.preventDefault();
-
     const formData = {
       email: email,
       password: password,
       username: name,
       address: email,
     };
-
-    const res = await axios.post(
-      "http://localhost:8080/api/v1/auths/signup",
-      formData
-    );
+    try {
+      const { data } = await signup(formData);
+    } catch (error) {
+      console.error("Error:", error);
+    }
     window.location.href = "http://localhost:5173";
   };
   return (
@@ -112,4 +111,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default Signup;
