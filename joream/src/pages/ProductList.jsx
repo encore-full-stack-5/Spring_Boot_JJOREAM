@@ -5,15 +5,40 @@ import Col from "react-bootstrap/Col";
 import ListGroup from "react-bootstrap/ListGroup";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Search from "./Search";
+import { getAllProducts } from "../api/productList";
+import { useRecoilState } from "recoil";
+import { ProductListState } from "../store/product";
 
 const ProductList = () => {
   const [showModal, setShowModal] = useState(false);
   const [category, setCategory] = useState(false);
   const [brand, setBrand] = useState(false);
   const [coordinate, setCoordinate] = useState("0px");
-  // const [prdInfo, setPrdInfo] = useState();
+  const [data, setData] = useRecoilState(ProductListState);
+  const [isLoading, setIsLoading] = useState(true);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      const { data } = await getAllProducts();
+      console.log(data);
+      const moreInfo = data.map((el) => ({
+        ...el,
+      }));
+      console.log(moreInfo);
+      setData(moreInfo);
+    } catch (error) {
+      console.error("Error:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const onClickModal = () => {
     setShowModal(!showModal);
@@ -316,13 +341,62 @@ const ProductList = () => {
 
           <div
             style={{
+              display: "flex",
+              flexWrap: "wrap",
               width: "85%",
               height: "80vh",
               backgroundColor: "whitesmoke",
             }}
           >
             {/* 여기서 맵 */}
-            <div
+            {isLoading ? (
+              <p>loading...</p>
+            ) : (
+              data.map((el, id) => (
+                <div
+                  key={id}
+                  style={{
+                    margin: "10px",
+                  }}
+                >
+                  {/* {console.log(el)} */}
+                  <Card
+                    style={{
+                      width: "13rem",
+                      padding: "10px",
+                      borderRadius: "20px",
+                    }}
+                  >
+                    <Card.Img
+                      variant="top"
+                      src="../../public/nike_air_force_1_black.png"
+                      style={{
+                        width: "200px",
+                        height: "240px",
+                        alignSelf: "center",
+                      }}
+                    />
+                    <Card.Body>
+                      <Card.Title
+                        style={{
+                          textAlign: "Left",
+                        }}
+                      >
+                        asd
+                      </Card.Title>
+                      <Card.Text
+                        style={{
+                          textAlign: "Left",
+                        }}
+                      >
+                        Model name ex.Nike Air Force 1 '07 Low Triple Black
+                      </Card.Text>
+                    </Card.Body>
+                  </Card>
+                </div>
+              ))
+            )}
+            {/* <div
               style={{
                 margin: "10px",
               }}
@@ -360,7 +434,7 @@ const ProductList = () => {
                   </Card.Text>
                 </Card.Body>
               </Card>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
