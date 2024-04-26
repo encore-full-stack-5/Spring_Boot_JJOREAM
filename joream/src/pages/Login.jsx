@@ -1,11 +1,13 @@
 import axios from "axios";
 import React, { useState } from "react";
 import { login } from "../api/register";
+import { useNavigate, useLocation } from "react-router-dom";
 import "../Login.css";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
   const submit = async (event) => {
     event.preventDefault();
@@ -21,7 +23,8 @@ const Login = () => {
     } catch (error) {
       console.log("Error:", error);
     }
-    // window.location.href = "http://localhost:5173";
+
+    navigate("/shop");
   };
 
   return (
