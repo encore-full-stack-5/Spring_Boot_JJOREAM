@@ -2,7 +2,7 @@ import axios from "axios";
 import React, { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { signup } from "../api/register";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "../Signin.css";
 
 const Signup = () => {

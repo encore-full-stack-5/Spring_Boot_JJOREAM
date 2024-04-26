@@ -8,7 +8,7 @@ export const api = async (url, method, body) => {
     method,
     data: body,
     headers: {
-      Authorization: localStorage.getItem("id"),
+      Authorization: "Bearer " + localStorage.getItem("token"),
     },
   });
 
