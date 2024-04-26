@@ -4,3 +4,8 @@ export const ProductListState = atom({
   key: "productListState",
   default: [],
 });
+
+// export const ProductDetailInfo = atom({
+//   ket: "productDetailInfo",
+//   default: "",
+// });

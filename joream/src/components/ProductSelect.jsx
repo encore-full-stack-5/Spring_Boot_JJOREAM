@@ -10,9 +10,11 @@ import {
   transactionHistoryState,
 } from "../store/ProductDetail";
 import { Modal } from "react-bootstrap";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { getProductDetail } from "../api/productInfo";
 
-const ProductSelect = () => {
+const ProductSelect = (props) => {
+  console.log(props.productId);
   const [productInfo, setProductInfo] = useRecoilState(productInfoState);
   const [transactionHistory, setTransactionHistory] = useRecoilState(
     transactionHistoryState
@@ -74,17 +76,45 @@ const ProductSelect = () => {
     ],
   };
 
-  const {
-    currentPrice,
-    productNameEn,
-    productNameKr,
-    size,
-    recentDeal,
-    releasePrice,
-    modelCode,
-    releaseDate,
-    color,
-  } = productInfo;
+  // const {
+  //   currentPrice,
+  //   productNameEn,
+  //   productNameKr,
+  //   size,
+  //   recentDeal,
+  //   releasePrice,
+  //   modelCode,
+  //   releaseDate,
+  //   color,
+  // } = productInfo;
+
+  const { releasePrice, brandName, productName, modelCode, releasedAt, color } =
+    productInfo;
+
+  const date = new Date(releasedAt);
+  const formattedDate = date.toLocaleDateString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+
+  const fetchData = async () => {
+    try {
+      const { data } = await getProductDetail(props.productId);
+      // const moreInfo = data.map((el) => ({
+      //   ...el,
+      //   isShow: false,
+      // }));
+      setProductInfo(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   const getTransactionHistory = (e) => {
     e.preventDefault();
@@ -141,17 +171,22 @@ const ProductSelect = () => {
 
   return (
     <div className="detail">
-      <div className="current-price-title">즉시 구매가</div>
-      <div className="current-price">{currentPrice}</div>
-      <div className="product-name-en">{productNameEn}</div>
-      <div className="product-name-kr">{productNameKr}</div>
+      <div className="current-price-title">발매가</div>
+      <div className="current-price">
+        {releasePrice.toLocaleString("ko-KR", {
+          style: "currency",
+          currency: "KRW",
+        })}
+      </div>
+      <div className="product-name-en">{brandName}</div>
+      <div className="product-name-kr">{productName}</div>
       <button className="size-button" type="button" onClick={openSizeModal}>
         {selectedSize}
       </button>
       <div className="info-container">
         <div className="info">
           <div style={{ color: "grey" }}>최근 거래가</div>
-          <div>{recentDeal}</div>
+          <div>정보없</div>
         </div>
         <div className="info">
           <div style={{ color: "grey" }}>발매가</div>
@@ -163,7 +198,7 @@ const ProductSelect = () => {
         </div>
         <div className="info">
           <div style={{ color: "grey" }}>출시일</div>
-          <div>{releaseDate}</div>
+          <div>{formattedDate}</div>
         </div>
         <div className="info">
           <div style={{ color: "grey" }}> 대표 색상</div>
@@ -449,8 +484,8 @@ const ProductSelect = () => {
               />
               <div style={{ fontSize: "0.8rem", textAlign: "left" }}>
                 <div>{modelCode}</div>
-                <div>{productNameEn}</div>
-                <div>{productNameKr}</div>
+                <div>{productName}</div>
+                <div>{brandName}</div>
               </div>
             </div>
           </Modal.Title>
@@ -511,8 +546,8 @@ const ProductSelect = () => {
               />
               <div style={{ fontSize: "0.8rem", textAlign: "left" }}>
                 <div>{modelCode}</div>
-                <div>{productNameEn}</div>
-                <div>{productNameKr}</div>
+                <div>{productName}</div>
+                <div>{brandName}</div>
               </div>
             </div>
           </Modal.Title>
