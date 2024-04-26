@@ -10,13 +10,22 @@ import Search from "./Search";
 import { categoryProducts, getAllProducts } from "../api/productList";
 import { useRecoilState } from "recoil";
 import { ProductListState } from "../store/product";
+import ProductSelect from "../components/ProductSelect";
+import { useNavigate } from "react-router-dom";
 
 const ProductList = () => {
+  let navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const [category, setCategory] = useState(false);
   const [brand, setBrand] = useState("");
   let [data, setData] = useRecoilState(ProductListState);
   const [isLoading, setIsLoading] = useState(true);
+  const [proDetail, setProDetail] = useState(false);
+  const [id, setId] = useState(0);
+
+  const handleProductClick = (productId) => {
+    navigate(`/detail/${productId}`);
+  };
 
   const [selectedCategories, setSelectedCategories] = useState([]);
 
@@ -59,11 +68,6 @@ const ProductList = () => {
   useEffect(() => {
     fetchData();
   }, [selectedCategories]);
-
-  // const onClickModal = () => {
-  //   setShowModal(!showModal);
-  //   // setPrdInfo(el); el
-  // };
 
   return (
     <>
@@ -348,6 +352,7 @@ const ProductList = () => {
                   style={{
                     margin: "10px",
                   }}
+                  onClick={() => handleProductClick(el.productId)}
                 >
                   {/* {console.log(el)} */}
                   <Card

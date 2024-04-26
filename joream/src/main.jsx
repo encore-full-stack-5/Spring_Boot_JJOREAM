@@ -21,7 +21,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     children: [
       { path: "/shop", element: <ProductList /> },
-      { path: "/detail", element: <ProductDetail /> },
+      { path: "/detail/:id", element: <ProductDetail /> },
       { path: "/like", element: <Wishlist /> },
       { path: "/buylist", element: <BuyList /> },
       { path: "/selllist", element: <SellList /> },
